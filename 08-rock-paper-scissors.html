@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      Rock Paper Scissors
+    </title>
+  </head>
+  <body>
+    <header>
+      <p>
+        Rock Paper Scissors
+      </p>
+    </header>
+
+    <button onclick="
+      play('rock');
+    ">
+      Rock
+    </button>
+
+    <button onclick="
+      play('paper');
+    ">
+      Paper
+    </button>
+
+    <button onclick="
+      play('scissors');
+    ">
+      Scissors
+    </button>
+
+    <button onclick="
+      score.wins = 0;
+      score.losses = 0;
+      score.ties = 0;
+      localStorage.removeItem('score');
+    ">
+      Reset Score
+    </button>
+
+    <script>
+      console.log(JSON.parse(localStorage.getItem('score')));
+
+      const score = JSON.parse(localStorage.getItem('score')) ||{
+        wins: 0,
+        losses: 0,
+        ties:0
+      };
+      
+      let outcome = 'You lose.';
+
+      function pickComputerChoice(){
+        const randomNumber = Math.random();
+
+        if(randomNumber <= 1/3) {
+          return 'rock';
+        } else if(randomNumber <= 2/3) {
+          return 'paper';
+        } else {
+          return 'scissors';
+        }
+      }
+
+      function compareChoices(playerChoice, computerChoice){
+        outcome = 'You lose.';
+
+        if(computerChoice === playerChoice){
+          outcome = 'Tie.';
+        } else{
+          if(computerChoice === 'rock'){
+            (playerChoice === 'paper') ? outcome = 'You win.' : outcome = 'You lose.';
+          }
+          if(computerChoice === 'paper'){
+            (playerChoice === 'scissors') ? outcome = 'You win.' : outcome = 'You lose.';
+          }
+          if(computerChoice === 'scissors'){
+            (playerChoice === 'rock') ? outcome = 'You win.' : outcome = 'You lose.';
+          }
+        }
+      }
+      function updateScore(){
+        if(outcome === 'You win.'){
+          score.wins++;
+        } else if(outcome === 'You lose.'){
+          score.losses++;
+        } else if(outcome === 'Tie.'){
+          score.ties++;
+        }
+
+        localStorage.setItem('score', JSON.stringify(score));
+      }
+
+      function play(playerChoice){
+        const computerChoice = pickComputerChoice();
+
+        compareChoices(playerChoice, computerChoice);
+        
+        updateScore(outcome);
+
+        alert(`You picked ${playerChoice}. Computer picked ${computerChoice}. ${outcome}\nWins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`);
+      }
+
+      
+    </script>
+  </body>
+</html>
