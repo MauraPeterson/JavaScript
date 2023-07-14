@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>
+    DOM Projects
+  </title>
+    
+  </head>
+  <body>
+
+    <p>
+      YouTube Suscribe Button
+    </p>
+
+    <button class="js-subscribe-button" onclick="
+      subscribe(document.querySelector('.js-subscribe-button'));
+    ">
+      Subscribe
+    </button>
+
+    <p>
+      Rock Paler Scissors
+    </p>
+
+    <a href="http://127.0.0.1:5500/09-rock-paper-scissors.html">Click here</a>
+
+    <p>Amazon Shipping Calculator</p>
+    <p>Orders under $40 = $10 shipping</p>
+    <p>Orders over $40 = <strong>FREE</strong> shipping</p>
+
+    <input onkeydown="
+      handleCostKeydown(event);
+    "
+      placeholder="Cost of order"
+      class="js-cost-input">
+
+    <button onclick="
+      calculateTotal();
+    ">Calculate</button>
+
+    <p class="js-total"></p>
+
+    <script>
+      function isButtonSubscribe(buttonElement){
+        if(buttonElement.innerText === 'Subscribe'){
+          return true
+        } else {
+          return false;
+        }
+      }
+
+      function subscribe(buttonElement){
+        (isButtonSubscribe(buttonElement))
+          ? buttonElement.innerText = 'Subscribed'
+          : buttonElement.innerText = 'Subscribe';
+      }
+
+      function calculateTotal(){
+        const inputElement = document.querySelector('.js-cost-input');
+        let cost = inputElement.value;
+        let message = '';
+
+        if(cost = Number(cost)){
+          if(cost < 40){
+            cost += 10;
+          }
+          message = `$${cost}`;
+        } else {
+          message = 'Input must be a number with no $ symbol';
+        }
+
+        updateTotalElement(message)
+      }
+
+      function updateTotalElement(message){
+        document.querySelector('.js-total').innerHTML = message;
+      }
+
+      function handleCostKeydown(event){
+        if(event.key==='Enter'){
+          calculateTotal();
+        } 
+      }
+    </script>
+  </body>
+</html>
