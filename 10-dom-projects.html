@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>
+    DOM Projects
+  </title>
+  
+  <style>
+    body{
+      font-family: Arial;
+      
+    }
+
+    .subscribe-button {
+      border: none;
+      background-color: black;
+      color: white;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      padding-left: 15px;
+      padding-right: 15px;
+      font-weight: bold;
+      border-radius: 50px;
+      cursor: pointer;
+      margin-bottom: 30px;
+    }
+
+    .is-subscribed {
+      background-color: rgb(240, 240, 240);
+      color: black;
+    }
+
+    .cost-input{
+      padding: 10px;
+      font-size: 15px;
+    }
+
+    .calculate-button {
+      background-color: green;
+      color:white;
+      border:none;
+
+      padding: 12px 15px;
+
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+  </style>
+    
+  </head>
+  <body>
+
+    <p>
+      YouTube Suscribe Button
+    </p>
+
+    <button class="js-subscribe-button subscribe-button" onclick="
+      subscribe(document.querySelector('.js-subscribe-button'));
+    ">
+      Subscribe
+    </button>
+
+    
+    <p>Amazon Shipping Calculator</p>
+    <p>Orders under $40 = $10 shipping</p>
+    <p>Orders over $40 = <strong>FREE</strong> shipping</p>
+    
+    <input class="js-cost-input cost-input"
+      placeholder="Cost of order"
+      onkeydown="
+        handleCostKeydown(event);
+      "
+      >
+      
+      <button class="calculate-button" onclick="
+      calculateTotal();
+      ">Calculate</button>
+
+    <p class="js-total"></p>
+
+    <p>
+      Rock Paler Scissors
+    </p>
+
+    <a href="http://127.0.0.1:5500/10-rock-paper-scissors.html">Click here</a>
+    <script>
+      function subscribe(buttonElement){
+        if(buttonElement.innerText === 'Subscribe'){
+          buttonElement.innerText = 'Subscribed';
+          buttonElement.classList.add('is-subscribed');
+        } else {
+          buttonElement.innerText = 'Subscribe';
+          buttonElement.classList.remove('is-subscribed');
+        }
+      }
+
+      function calculateTotal(){
+        const inputElement = document.querySelector('.js-cost-input');
+        let /**@type {number}*/ cost = inputElement.value;
+        let message = '';
+
+        if(cost = Number(cost)){
+          if(cost < 40){
+            cost += 10;
+          }
+          message = cost.toLocaleString("en-US", { style: "currency", currency: "USD" });
+        } else {
+          message = 'Input must be a number with no $ symbol';
+        }
+
+        updateTotalElement(message)
+      }
+
+      function updateTotalElement(message){
+        document.querySelector('.js-total').innerHTML = message;
+      }
+
+      function handleCostKeydown(event){
+        if(event.key==='Enter'){
+          calculateTotal();
+        } 
+      }
+    </script>
+  </body>
+</html>
