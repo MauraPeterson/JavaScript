@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dom9</title>
+</head>
+<body>
+
+  <button>9a</button>
+
+  <p>
+    <button onclick="
+      updateChoice('heads');
+      ">
+      heads
+    </button>
+
+    <button onclick="
+    updateChoice('tails');
+    ">
+      tails
+    </button>
+
+  </p>
+  <p class="js-choice">
+
+  </p>
+
+  <p>
+    <input type="text"
+    onkeydown="
+      inputKeyDown();
+    ">
+
+    <button onclick="
+      updateName();
+    ">Submit</button>
+  </p>
+
+  <p class="js-name"></p>
+
+  <p>
+    <input type="text" class="js-update-input"
+    onkeyup="
+    updateKey(event.key);
+    ">
+  </p>
+
+  <p class="js-key-output"></p>
+
+  <script>
+    console.log(document.querySelector('button'));
+    document.querySelector('button').innerHTML = '9b done!';
+
+    function updateChoice(choice){
+      const choiceElement = document.querySelector('.js-choice');
+      choiceElement.innerHTML = `You chose: ${choice}`;
+    }
+
+    function updateName(){
+      const inputElement = document.querySelector('input');
+      const name = inputElement.value;
+      const jsNameElement = document.querySelector('.js-name');
+      jsNameElement.innerHTML = name;
+    }
+
+    function inputKeyDown(){
+      if(event.key === 'Enter'){
+        updateName();
+      }
+    }
+
+    function updateKey(){
+      const keyOutputElement = document.querySelector('.js-key-output');
+      const inputElement = document.querySelector('.js-update-input');
+
+      keyOutputElement.innerHTML = inputElement.value;      
+    }
+  </script>
+  
+</body>
+</html>

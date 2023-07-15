@@ -9,21 +9,21 @@
     <p>
       <button onclick="
         calculation += '1';
-        console.log(calculation);
+        updateCalculationElement();
         ">
         1
       </button>
       
       <button onclick="
         calculation += '2';
-        console.log(calculation);
+        updateCalculationElement();
         ">
         2
       </button>
       
       <button onclick="
         calculation += '3';
-        console.log(calculation);
+        updateCalculationElement();
         ">
         3
       </button>
@@ -31,21 +31,21 @@
     <p>
       <button onclick="
         calculation += '4';
-        console.log(calculation);
+        updateCalculationElement();
         ">
         4
       </button>
       
       <button onclick="
         calculation += '5';
-        console.log(calculation);
+        updateCalculationElement();
         ">
         5
       </button>
       
       <button onclick="
         calculation += '6';
-        console.log(calculation);
+        updateCalculationElement();
         ">
         6
       </button>
@@ -54,21 +54,21 @@
       
       <button onclick="
         calculation += '7';
-        console.log(calculation);
+        updateCalculationElement();
         ">
         7
       </button>
       
       <button onclick="
         calculation += '8';
-        console.log(calculation);
+        updateCalculationElement();
         ">
         8
       </button>
       
       <button onclick="
         calculation += '9';
-        console.log(calculation);
+        updateCalculationElement();
         ">
         9
       </button>
@@ -77,42 +77,57 @@
       
       <button onclick="
         calculation += ' + ';
-        console.log(calculation);
+        updateCalculationElement();
         ">
         +
       </button>
       
       <button onclick="
         calculation += ' - ';
-        console.log(calculation);
+        updateCalculationElement();
         ">
         -
       </button>
       
       <button onclick="
         calculation += ' * ';
-        console.log(calculation);
+        updateCalculationElement();
         ">
         *
       </button>
       
       <button onclick="
         calculation += ' / ';
-        console.log(calculation);
+        updateCalculationElement();
         ">
         /
       </button>
       
       <button onclick="
         calculation = eval(calculation);
-        console.log(calculation);
+        updateCalculationElement();
         ">
         =
       </button>
+      <p>
+        <button onclick="
+          calculation = '';
+          updateCalculationElement();
+        ">
+          Clear
+        </button>
+      </p>
+      
     </p>
+    <p class="js-calculation"></p>
     
     <script>
       let calculation = '';
+
+      function updateCalculationElement(){
+        const calculationElement = document.querySelector('.js-calculation');
+        calculationElement.innerHTML = calculation;
+      }
     </script>
   </body>
 </html>

@@ -57,14 +57,14 @@
 
       function calculateTotal(){
         const inputElement = document.querySelector('.js-cost-input');
-        let cost = inputElement.value;
+        let /**@type {number}*/ cost = inputElement.value;
         let message = '';
 
         if(cost = Number(cost)){
           if(cost < 40){
             cost += 10;
           }
-          message = `$${cost}`;
+          message = cost.toLocaleString("en-US", { style: "currency", currency: "USD" });
         } else {
           message = 'Input must be a number with no $ symbol';
         }
