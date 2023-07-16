@@ -4,8 +4,10 @@
     <title>
       Calculator
     </title>
+    <link rel="stylesheet" href="/styles/calculator.css">
   </head>
   <body>
+    <p class="js-output output"></p>
     <p>
       <button onclick="
         updateCalculation(calculation += '1');
@@ -23,6 +25,12 @@
         updateCalculation(calculation += '3');
         ">
         3
+      </button>
+
+      <button class="operator" onclick="
+        updateCalculation(calculation += ' + ');
+        ">
+        +
       </button>
     </p>
     <p>
@@ -42,6 +50,11 @@
         updateCalculation(calculation += '6');
         ">
         6
+      </button>
+      <button class="operator" onclick="
+        updateCalculation(calculation += ' - ');
+        ">
+        - 
       </button>
     </p>
     <p>
@@ -63,40 +76,43 @@
         ">
         9
       </button>
-    </p>
-    <p>
-      
-      <button onclick="
-        updateCalculation(calculation += ' + ');
-        ">
-        +
-      </button>
-      
-      <button onclick="
-        updateCalculation(calculation += ' - ');
-        ">
-        -
-      </button>
-      
-      <button onclick="
+      <button class="operator" onclick="
         updateCalculation(calculation += ' * ');
         ">
         *
       </button>
-      
+    </p>
+    <p>
       <button onclick="
-        updateCalculation(calculation += ' / ');
+        updateCalculation(calculation += '0');
         ">
-        /
+        0
       </button>
+
+      <button onclick="
+        updateCalculation(calculation += '.');
+        ">
+        .
+      </button>
+      
+      
+      
       
       <button onclick="
         updateCalculation(eval(calculation));
         ">
         =
       </button>
+      
+      <button class="operator" onclick="
+        updateCalculation(calculation += ' / ');
+        ">
+        /
+      </button>
 
-      <button onclick="
+    </p>
+    <p>
+      <button class="clear" onclick="
         updateCalculation('');
       ">
         Clear
@@ -105,11 +121,13 @@
     
     <script>
       let calculation = localStorage.getItem('calculation') || '';
+      document.querySelector('.js-output').innerHTML = calculation;
       console.log(calculation);
 
       function updateCalculation(string){
         calculation = string;
         localStorage.setItem('calculation', calculation);
+        document.querySelector('.js-output').innerHTML = calculation;
         console.log(calculation);
       }
     </script>
