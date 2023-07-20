@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const array1 = [10, 20, 30];
+    console.log(array1);
+    array1[0] = 99;
+    console.log(array1);
+
+    console.log(getLastVallue(array1));
+
+    console.log(arraySwap([1,20,22,24,5]));
+    console.log(arraySwap(['hi', 'hello', 'good']));
+
+    countBy2();
+
+    countDown();
+
+    countBy2While();
+
+    countDownWhile();
+
+    console.log(addOne([1, 2, 3]));
+    console.log(addOne([-2, -1, 0, 99]));
+
+    console.log(addNum([1, 2, 3], 2));
+    console.log(addNum([1, 2, 3], 3));
+    console.log(addNum([-2, -1, 0, 99], 2));
+
+    const bigArray = [1, 1, 2, 3];
+    const bigArray2 = [3, 2, 1, 1];
+    const smallArray = [1,3];
+
+    console.log(addArrays(bigArray, smallArray));
+    console.log(addArrays(smallArray, bigArray));
+    console.log(addArrays(bigArray, bigArray2));
+
+    console.log(countPositive([1, -3, 5]));
+    console.log(countPositive([-2, 3, -5, 7, 10]));
+
+    console.log(minMax([1, -3, 5]));
+    console.log(minMax([-2, 3, -5, 7, 10]));
+    console.log(minMax([]));
+    console.log(minMax([3]));
+
+    console.log(countWords(['apple', 'grape', 'apple', 'apple']));
+
+    console.log(countWords(['apple']));
+    console.log(countWords([]));
+
+    function getLastVallue(array){
+      return array[array.length - 1];
+    }
+
+    function arraySwap(array){
+      const newArray =[];
+      newArray.push(array[array.length - 1]);
+      for(let i = 1; i < array.length - 1; i++){
+        newArray.push(array[i]);
+      }
+      newArray.push(array[0]);
+      return newArray;
+    }
+
+    function countBy2(){
+      for(let i = 0; i <= 10; i += 2){
+        console.log(i);
+      }
+    }
+
+    function countDown(){
+      for(let i = 5; i >= 0; i--){
+        console.log(i);
+      }
+    }
+
+    function countBy2While(){
+      let i = 0;
+      while(i <= 10){
+        console.log(i);
+        i += 2;
+      }
+    }
+
+    function countDownWhile(){
+      let i = 5;
+      while(i >= 0){
+        console.log(i);
+        i--;
+      }
+    }
+
+    function addOne(array){
+      const newArray =[];
+      for(let i = 0; i < array.length; i++){
+        newArray.push(array[i] += 1);
+      }
+      return newArray;
+    }
+
+    function addNum(array, num){
+      const newArray =[];
+      for(let i = 0; i < array.length; i++){
+        newArray.push(array[i] += num);
+      }
+      return newArray;
+    }
+
+    function addArrays(array1, array2){
+      const newArray = [];
+      let bigArray;
+      let smallArray;
+
+      if(array1.length >= array2.length){
+        bigArray = array1;
+        smallArray = array2
+      }else{
+        bigArray = array2;
+        smallArray = array1;
+      }
+      for(let i = 0; i < bigArray.length; i++){
+          if(smallArray[i]){
+            newArray.push(bigArray[i] + smallArray[i]);
+          }else{
+            newArray.push(bigArray[i]);
+          }
+      }
+      return newArray;
+    }
+
+    function countPositive(nums){
+      count = 0;
+      for(let i = 0; i < nums.length; i++){
+        if(nums[i] > 0){
+          count++;
+        }
+      }
+      return count;
+    }
+
+    function minMax(nums){
+      let object = {
+        min: null,
+        max: null
+      }
+
+      for(let i = 0; i < nums.length; i++){
+        if(object.min){
+          if(object.min > nums[i]){
+            object.min = nums[i];
+          }
+        }else{
+          object.min = nums[i];
+        }
+
+        if(object.max){
+          if(object.max < nums[i]){
+            object.max = nums[i];
+          }
+        } else{
+          object.max = nums[i];
+        }
+      }
+
+      return object;
+    }
+
+    function countWords(words){
+      const object = {};
+
+      for(let i = 0; i < words.length; i++){
+        if(object[words[i]]){
+          object[words[i]] += 1;
+        }else{
+          object[words[i]] = 1;
+        }
+      }
+
+      return object;
+    }
+  </script>
+</body>
+</html>
