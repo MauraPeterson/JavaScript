@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>11-2</title>
+  <style>
+    body{
+      background-color: black;
+      color: pink;
+    }
+  </style>
+</head>
+<body>
+  <script>
+    
+    const array1 = ['hello', 'world', 'search', 'good'];
+    const array2 = ['not', 'found'];
+    const array3 = ['hello', 'search', 'world', 'search', 'good', 'search'];
+
+    findIndex(array1, 'search');
+    findIndex(array2, 'search');
+    findIndex(array3, 'search');
+    console.log(array3);
+    
+    console.log(removeFirstNumStrings(array3, 'search', 1));
+    
+    console.log(removeLastNumStrings(array3, 'search', 1));
+    
+    console.log(removeString(array3, 'search'));
+
+    console.log(unique(array3));
+
+    fizzBuzz(20);
+
+
+    function findIndex(array, string){
+      let found = false;
+      for(let i = 0; i < array.length; i++){
+        if(array[i] === string){
+          console.log(i);
+          found = true;
+          return;
+        }
+      }
+      console.log(-1);
+    }
+
+    function removeString(array, string){
+      let newArray = array.slice();
+      for(let i = 0; i < newArray.length; i++){
+        if(newArray[i] === string){
+          newArray.splice(i, 1);
+        }
+      }
+      return newArray;
+    }
+
+    function removeLastNumStrings(array, string, num){
+      let reverseArray = array.slice(array);
+      reverseArray.reverse();
+      reverseArray = removeFirstNumStrings(reverseArray, string, num);
+      reverseArray.reverse();
+      return reverseArray;
+    }
+
+    function removeFirstNumStrings(array, string, num){
+      let count = 0;
+      const newArray = array.slice();
+      for(let i = 0; i < newArray.length; i++){
+        if(newArray[i] === string && count < num){
+          newArray.splice(i, 1);
+          count++;
+        }
+      }
+      return newArray;
+    }
+
+    function fizzBuzz(num){
+      let string;
+      for(let i = 1; i <= num; i++){
+        let fizzOrBuzz = false;
+        string = '';
+        if(i % 3 === 0){
+          string += 'Fizz';
+        }
+        if (i % 5 === 0){
+          string += 'Buzz';
+        }
+        if(!string){
+          string += i;
+        }
+        console.log(string);
+      }
+    }
+
+    function unique(array){
+      const uniqueArray = [];
+      const seenStrings = new Map();
+
+      for(const string of array){
+        if(!seenStrings.has(string)){
+          seenStrings.set(string, true);
+          uniqueArray.push(string);
+        }
+      }
+      return uniqueArray;
+    }
+  </script>
+</body>
+</html>
