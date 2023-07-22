@@ -28,11 +28,11 @@ function removeTodo(i){
   renderTodoList(todoList);
 }
 
+
 function renderTodoList(todoList){
   let todoListHTML = '';
 
-  for(let i = 0; i < todoList.length; i++){
-    const todoObject = todoList[i];
+  todoList.forEach(function(todoObject, index){
     const {name , dueDate} = todoObject;
     const html = `
       <div>
@@ -42,16 +42,14 @@ function renderTodoList(todoList){
         ${dueDate}
       </div> 
       <button onclick="
-        removeTodo(${i});
+        removeTodo(${index});
       "
       class="delete-button">
         Delete
       </button>
     `;
-    todoListHTML += html;
+  todoListHTML += html;
+  });
+    const todoListElement = document.querySelector('.js-todo-list');
+    todoListElement.innerHTML = todoListHTML;
   }
-
-  const todoListElement = document.querySelector('.js-todo-list');
-  todoListElement.innerHTML = todoListHTML;
-  
-}

@@ -1,4 +1,19 @@
 
+let isAutoPlaying = false;
+let intervalId;
+
+function autoPlay(){
+  if(!isAutoPlaying){
+    intervalId = setInterval(function(){
+      play(pickComputerChoice());
+    }, 1000);
+    isAutoPlaying = true;
+  } else{
+    clearInterval(intervalId);
+    isAutoPlaying = false;
+  }
+}
+
 const score = JSON.parse(localStorage.getItem('score')) ||{
   wins: 0,
   losses: 0,
@@ -51,6 +66,7 @@ function updateScore(){
   localStorage.setItem('score', JSON.stringify(score));
   updateScoreElement();
 }
+
 
 function play(playerChoice){
   const computerChoice = pickComputerChoice();
