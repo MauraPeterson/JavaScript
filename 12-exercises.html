@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>App</title>
+</head>
+<body>
+
+<button class="js-finish" onclick="
+    finished();
+  ">
+  Start
+</button><br>
+
+<button onclick="
+  addToCart();
+">
+  Add to cart
+</button>
+
+<p class="js-add-text"></p>
+
+<p>
+  <button onclick="
+    addMessage();
+    ">
+    Add
+  </button>
+
+  <button onclick="
+    removeMessage();
+  ">
+    Remove
+  </button>
+</p>
+
+  <script>
+    const add = function(){
+      console.log(2+3);
+    }
+
+    add();
+    add();
+
+    function runTwice(fun){
+      fun();
+      fun();
+    }
+
+    runTwice(function(){console.log('12b')});
+    runTwice(add);
+
+    function finished(){
+      const jsFininshElement = document.querySelector('.js-finish');
+      jsFininshElement.innerHTML ='Loading...';
+      setTimeout(function(){jsFininshElement.innerHTML ="Finished!";}, 1000)
+    }
+    
+    let timerID;
+    function addToCart(){
+      clearTimeout(timerID);
+      const jsAddTextElement = document.querySelector('.js-add-text');
+      jsAddTextElement.innerHTML = 'Added';
+      timerID = setTimeout(function(){jsAddTextElement.innerHTML='';}, 2000);
+    }
+
+    isNotification = false;
+    setInterval(function(){
+      const jsTitleElement = document.querySelector('title');
+      if(isNotification){
+        isNotification = false;
+        jsTitleElement.innerHTML = 'App';
+      } else {
+        isNotification = true;
+        if(messages > 0){
+          jsTitleElement.innerHTML = `(${messages}) New messages`;
+        }
+      }
+    }, 1000);
+
+    let messages = 0;
+
+    function addMessage(){
+      messages++;
+    }
+
+    function removeMessage(){
+      if(messages > 0){
+        messages--;
+      }
+    }
+    
+  </script>
+</body>
+</html>
