@@ -2,17 +2,39 @@
 let isAutoPlaying = false;
 let intervalId;
 
-function autoPlay(){
-  if(!isAutoPlaying){
-    intervalId = setInterval(function(){
-      play(pickComputerChoice());
-    }, 1000);
-    isAutoPlaying = true;
-  } else{
-    clearInterval(intervalId);
-    isAutoPlaying = false;
+
+document.querySelector('.js-rock-button')
+.addEventListener('click', () =>{
+  play('rock');
+});
+
+document.querySelector('.js-paper-button')
+.addEventListener('click', () =>{
+  play('paper');
+});
+
+document.querySelector('.js-scissors-button')
+.addEventListener('click', () => play('scissors'));
+
+document.querySelector('.js-auto-play')
+.addEventListener('click', () => autoPlay());
+
+document.querySelector('.js-reset-score')
+.addEventListener('click', () => confirmReset());
+
+document.body.addEventListener('keydown', (event) => {
+  if(event.key === 'r'){
+    play('rock');
+  } else if(event.key === 'p'){
+    play('paper');
+  } else if(event.key === 's'){
+    play('scissors');
+  } else if(event.key ==='a'){
+    autoPlay();
+  } else if(event.key === 'Backspace'){
+    confirmReset();
   }
-}
+})
 
 const score = JSON.parse(localStorage.getItem('score')) ||{
   wins: 0,
@@ -23,6 +45,23 @@ const score = JSON.parse(localStorage.getItem('score')) ||{
 updateScoreElement();
 
 let outcome = 'You lose.';
+
+function autoPlay(){
+  const autoButton = document.querySelector('.js-auto-play');
+  if(!isAutoPlaying){
+    intervalId = setInterval(() => {
+      play(pickComputerChoice());
+    }, 1000);
+    isAutoPlaying = true;
+    
+    autoButton.innerHTML = 'Stop Playing';
+  } else{
+    clearInterval(intervalId);
+    isAutoPlaying = false;
+
+    autoButton.innerHTML = 'Auto Play';
+  }
+}
 
 function pickComputerChoice(){
   const randomNumber = Math.random();
@@ -79,6 +118,25 @@ function play(playerChoice){
 
   updateOutcomeElement(outcome);
 
+}
+
+function confirmReset(){
+  const conformationElement = document.querySelector('.js-reset-score-conformation');
+  conformationElement.innerHTML = `
+    Are you sure you want to reset the score?
+
+    <button class="confirm-button js-yes">Yes</button>
+    <button class="confirm-button js-no">No</button>
+  `;
+
+  document.querySelector('.js-yes').addEventListener('click', () => {
+    conformationElement.innerHTML = '';
+    resetScore();
+  });
+
+  document.querySelector('.js-no').addEventListener('click', () => {
+    conformationElement.innerHTML = '';
+  });
 }
 
 function resetScore(){

@@ -7,35 +7,36 @@
 </head>
 <body>
 
-<button class="js-finish" onclick="
-    finished();
-  ">
+<button class="js-finish">
   Start
 </button><br>
 
-<button onclick="
-  addToCart();
-">
+<button class="js-add-to-cart">
   Add to cart
 </button>
 
 <p class="js-add-text"></p>
 
 <p>
-  <button onclick="
-    addMessage();
-    ">
+  <button class="js-add">
     Add
   </button>
 
-  <button onclick="
-    removeMessage();
-  ">
+  <button class="js-remove">
     Remove
   </button>
 </p>
 
   <script>
+
+    document.querySelector('.js-finish').addEventListener('click', () => finished());
+
+    document.querySelector('.js-add-to-cart').addEventListener('click', () => addToCart());
+
+    document.querySelector('.js-add').addEventListener('click', () => addMessage());
+
+    document.querySelector('.js-remove').addEventListener('click', () => removeMessage());
+
     const add = function(){
       console.log(2+3);
     }

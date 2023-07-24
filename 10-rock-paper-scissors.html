@@ -13,21 +13,15 @@
       </p>
     </header>
 
-    <button class="move-button" onclick="
-      play('rock');
-    ">
+    <button class="move-button js-rock-button">
       <img src="images/rock-emoji.png" class="move-icon" alt="Rock">
     </button>
 
-    <button class="move-button" onclick="
-      play('paper');
-    ">
+    <button class="move-button js-paper-button">
       <img src="images/paper-emoji.png" class="move-icon" alt="Paper">
     </button>
 
-    <button class="move-button" onclick="
-      play('scissors');
-    ">
+    <button class="move-button js-scissors-button">
       <img src="images/scissors-emoji.png" class="move-icon" alt="Scissors">
     </button>
 
@@ -37,18 +31,15 @@
 
     <p class="js-score score"></p>
 
-    <button class="score-reset-button"
-    onclick="
-      resetScore();
-    ">
+    <button class="score-reset-button js-reset-score">
       Reset Score
     </button>
 
-    <button class="auto-play-button" onclick="
-      autoPlay();
-    ">
+    <button class="auto-play-button js-auto-play">
       Auto Play
     </button>
+
+    <p class="js-reset-score-conformation"></p>
 
     <script src="scripts/10-rock-paper-scissors.js"></script>
   </body>
